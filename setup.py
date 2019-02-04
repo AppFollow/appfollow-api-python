@@ -15,12 +15,11 @@ setup(
     description='A Python 3.6 wrapper for the AppFollow API',
     long_description=readme,
     long_description_content_type='text/markdown',
-    url='https://github.com/denas96/appfollow-python-api',
+    url='https://github.com/AppFollow/appfollow-api-python',
     packages=find_packages(),
     install_requires=convert_deps_to_pip(pfile['packages'], r=False),
     classifiers=[
         'Programming Language :: Python :: 3.6',
-        'License :: OSI Approved :: MIT License',
         'Operating System :: OS Independent',
     ],
 )
