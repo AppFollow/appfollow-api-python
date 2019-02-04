@@ -5,7 +5,7 @@ from requests import Session
 from .exceptions import ApiError
 
 
-class AppfollowApi:
+class AppFollowAPI:
     API_URL = 'https://api.appfollow.io'
 
     def __init__(self, cid, secret, session=Session()):
