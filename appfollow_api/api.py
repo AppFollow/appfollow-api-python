@@ -1,6 +1,6 @@
 from hashlib import md5
 
-import requests
+from requests import Session
 
 from .exceptions import ApiError
 
@@ -8,9 +8,10 @@ from .exceptions import ApiError
 class AppfollowApi:
     API_URL = 'https://api.appfollow.io'
 
-    def __init__(self, cid, secret):
+    def __init__(self, cid, secret, session=Session()):
         self.cid = cid
         self.secret = secret
+        self.session = session
 
     def _api_call(self, path, params):
         params['cid'] = self.cid
@@ -25,7 +26,8 @@ class AppfollowApi:
 
         params['sign'] = md5(sign.encode()).hexdigest()
 
-        response = requests.get(self.API_URL + path, params=params)
+        response = self.session.get(self.API_URL + path, params=params)
+
         if response.status_code == 502:
             raise ApiError('Bad Gateway', 502)
         elif response.status_code == 504:

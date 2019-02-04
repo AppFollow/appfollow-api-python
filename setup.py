@@ -1,11 +1,10 @@
-from pipenv.project import Project
-from pipenv.utils import convert_deps_to_pip
-from setuptools import setup, find_packages
-
-pfile = Project(chdir=False).parsed_pipfile
+from setuptools import find_packages, setup
 
 with open('README.md', 'r') as f:
     readme = f.read()
+
+with open('requirements.txt') as f:
+    required = f.read().splitlines()
 
 setup(
     name='appfollow_api',
@@ -17,7 +16,7 @@ setup(
     long_description_content_type='text/markdown',
     url='https://github.com/AppFollow/appfollow-api-python',
     packages=find_packages(),
-    install_requires=convert_deps_to_pip(pfile['packages'], r=False),
+    install_reqs=required,
     classifiers=[
         'Programming Language :: Python :: 3.6',
         'Operating System :: OS Independent',
