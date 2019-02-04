@@ -13,18 +13,20 @@ class AppFollowAPI:
         self.secret = secret
         self.session = session
 
-    def _api_call(self, path, params):
-        params['cid'] = self.cid
-        if 'from_' in params:
-            params['from'] = params.pop('from_')
-
+    def _make_sign(self, path, params):
         sign = '{sorted_params}{path}{secret}'.format(
             sorted_params=''.join([f'{k}={params[k]}' for k in sorted(params.keys())]),
             path=path,
             secret=self.secret
         )
+        return md5(sign.encode()).hexdigest()
 
-        params['sign'] = md5(sign.encode()).hexdigest()
+    def _api_call(self, path, params):
+        params['cid'] = self.cid
+        if 'from_' in params:
+            params['from'] = params.pop('from_')
+
+        params['sign'] = self._make_sign(path, params)
 
         response = self.session.get(self.API_URL + path, params=params)
 
