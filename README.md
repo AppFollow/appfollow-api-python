@@ -24,3 +24,10 @@ api_secret = 'AppFollow-966-2b3da05ee'
 api = AppFollowAPI(cid, api_secret)
 data = api.collections()
 ```
+
+You can pass your `requests.session` objects into api:
+```python
+...
+api = AppFollowAPI(cid, api_secret, session=session)
+...
+```
