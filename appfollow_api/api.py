@@ -279,6 +279,24 @@ class AppFollowAPI:
             params={}
         )
 
+    def aso_report_countries(self, ext_id):
+        return self._api_call(
+            path='/reports/aso_report/countries',
+            params={
+                'ext_id': ext_id
+            }
+        )
+
+    def featured_apps(self, apps_id, ext_id, **optionals):
+        optionals.update({
+            'apps_id': apps_id,
+            'ext_id': ext_id,
+        })
+        return self._api_call(
+            path='/feature',
+            params=optionals
+        )
+
     @staticmethod
     def list_to_csv(arr):
         return ','.join(arr)
