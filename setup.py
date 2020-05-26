@@ -8,7 +8,7 @@ with open('requirements.txt') as f:
 
 setup(
     name='appfollow_api',
-    version='0.0.1',
+    version='1.0.0',
     author='Denis Bondarenko',
     author_email='denis.bondarenko@appfollow.io',
     description='A Python 3.6 wrapper for the AppFollow API',

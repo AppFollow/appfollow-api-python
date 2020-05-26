@@ -10,6 +10,9 @@ or git:
 2. Install:  
 `sudo python setup.py install`
 
+Or you can use pip: 
+`pip install git+https://github.com/AppFollow/appfollow-api-python`
+
 # Usage
 To execute AppFollow APIs, you need your API secret and cleint ID.  
 You can get them in [account settings](http://watch.appfollow.io/settings/general).  
@@ -28,6 +31,7 @@ data = api.collections()
 You can pass your `requests.session` objects into api:
 ```python
 ...
+session = Session()
 api = AppFollowAPI(cid, api_secret, session=session)
 ...
 ```
