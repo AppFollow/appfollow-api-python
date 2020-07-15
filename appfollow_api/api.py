@@ -10,9 +10,7 @@ class AppFollowAPI:
     def __init__(self, cid, secret, session=None):
         self.cid = cid
         self.secret = secret
-        if session is None:
-            session = Session()
-        self.session = session
+        self.session = Session() if session is None else session
 
     def _api_call(self, path, params):
         params['cid'] = self.cid
@@ -263,7 +261,7 @@ class AppFollowAPI:
     def remove_app(self, apps_id, store, ext_id, **optionals):
         return self._api_call(
             path='/app/delete',
-            params={'apps_id': apps_id, 'store': store, 'ext_id': ext_id, **optionals,},
+            params={'apps_id': apps_id, 'store': store, 'ext_id': ext_id, **optionals},
         )
 
     def add_user(self, name, role, email, **optionals):
