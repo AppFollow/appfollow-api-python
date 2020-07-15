@@ -10,11 +10,6 @@ class ApiTest(unittest.TestCase):
     def setUp(self):
         self.api = AppFollowAPI('cid', 'secret')
 
-    def test_make_sign(self):
-        sign = self.api._make_sign('/path', {'type': '1'})
-        expected_sign = '795bedc6f005459083627e77c12ed85a'
-        self.assertEqual(sign, expected_sign)
-
     def test_api_error(self):
         response = Response()
         response.status_code = 200
@@ -22,3 +17,13 @@ class ApiTest(unittest.TestCase):
         self.api.session.get = Mock(return_value=response)
         with self.assertRaises(ApiError):
             self.api.collections()
+        response.json.assert_called_once()
+
+    def test_network_error(self):
+        response = Response()
+        response.status_code = 504
+        response.json = Mock()
+        self.api.session.get = Mock(return_value=response)
+        with self.assertRaises(ApiError):
+            self.api.collections()
+        response.json.assert_not_called()
