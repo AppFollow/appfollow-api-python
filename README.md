@@ -14,17 +14,16 @@ Or you can use pip:
 `pip install git+https://github.com/AppFollow/appfollow-api-python`
 
 # Usage
-To execute AppFollow APIs, you need your API secret and cleint ID.  
+To execute AppFollow APIs, you need your API secret.  
 You can get them in [account settings](http://watch.appfollow.io/settings/general).  
 For the details about the API, see [apiary](https://appfollow.docs.apiary.io/#).
 
 ```python
 from appfollow_api import AppFollowAPI
 
-cid = '966'
 api_secret = 'AppFollow-966-2b3da05ee'
 
-api = AppFollowAPI(cid, api_secret)
+api = AppFollowAPI(api_secret)
 data = api.collections()
 ```
 
@@ -32,6 +31,6 @@ You can pass your `requests.session` objects into api:
 ```python
 ...
 session = Session()
-api = AppFollowAPI(cid, api_secret, session=session)
+api = AppFollowAPI(api_secret, session=session)
 ...
 ```

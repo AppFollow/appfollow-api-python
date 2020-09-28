@@ -7,13 +7,11 @@ from .exceptions import ApiError
 class AppFollowAPI:
     API_URL = 'https://api.appfollow.io'
 
-    def __init__(self, cid, secret, session=None):
-        self.cid = cid
+    def __init__(self, secret, session=None):
         self.secret = secret
         self.session = Session() if session is None else session
 
     def _api_call(self, path, params):
-        params['cid'] = self.cid
         if 'from_' in params:
             params['from'] = params.pop('from_')
 
