@@ -206,7 +206,7 @@ class AppFollowAPI:
 
     def top_charts(self, genre, device, country, date):
         return self._api_call(
-            path='/rankings/top_charts',
+            path='/rankings/topcharts',
             params={
                 'genre': genre,
                 'device': device,
